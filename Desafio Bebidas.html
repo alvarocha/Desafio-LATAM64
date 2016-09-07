@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+	<title>Desafio Bebidas</title>
+</head>
+<body>
+
+<script>
+
+//var Sorbos = 10;
+
+function Persona(Nombre, Edad){
+	this.Nombre=Nombre;
+	this.Edad=Edad;
+	this.Sorbos_Tomados=0;
+	this.Grado_Borracho=0;
+	this.Beber_Bebida = function(objeto){//le voy a ingresar el objeto bebida
+		if (objeto.Sorbos>0 && this.Sorbos_Tomados<30) {//solo dejará tomar lo que sea mientras quede y sean menor a 30
+			if (objeto.Alcohólica){
+				if (this.Edad>18 && this.Grado_Borracho<25) {
+						objeto.Ser_tomada();
+						this.Sorbos_Tomados+=1;
+						this.Grado_Borracho+=1;
+						if (this.Grado_Borracho>15) {
+						console.log("Estas seguro que quieres seguir tomando? estas ebrio");							
+						}
+						else
+						console.log("Bebida Alcohólica tomada")
+
+					}
+				else
+					console.log("Menor de edad no puede tomar bebida alcoholica o ya estas muy borracho");//reutilicé menssaje para no poner otro IF
+			}
+			else //no Alcohólica
+			{
+				objeto.Ser_tomada();
+				console.log("Bebida No Alcohólica tomada");
+
+			}
+		}//del if que pregunta si hay o no bebida
+		else
+			console.log("no queda bebida");
+	}//cierre de Beber_Bebida
+}
+
+function Bebida(Alcohólica,Sorbos){/*como hago que sea boleana?*/
+	this.Alcohólica=Alcohólica;
+	//this.Sorbos=Sorbos;//Sorbos max es 10
+	this.Sorbos = 10;
+	this.Ser_tomada = function(){
+		this.Sorbos-=1;
+	}
+}
+
+var Alvaro = new Persona("Alvaro",30)
+var Felipe = new Persona("Felipe",15);
+var Coca_cola = new Bebida(false);
+var Pisco = new Bebida(true);
+var Ron = new Bebida(true);
+var Vodka = new Bebida(true);
+
+
+/*
+	Crear una clase Persona, con nombre, edad y método beber bebida.
+Crear una clase Bebida con propiedades Alcohólica (de tipo boolean) y sorbos. (Cantidad de
+sorbos)
+
+Crear 2 instancias, una persona mayor de edad y otra no, con el nombre que estimen
+conveniente.
+
+Crear las instancias de Bebidas que requieran para resolver el ejercicio.
+
+Funcionamiento
+Las personas pueden beber bebidas.
+
+La bebida debe tener un máximo de 10 sorbos (se descontarán al momento que las personas
+beban). 
+Si los sorbos llegan a 0, entregar mensaje indicando que la bebida está vacía.*/
+
+/*
+Si la persona mayor de edad intenta beber una bebida alcohólica debe entregar un mensaje
+de que la bebida fue bebida correctamente y actualizar la propiedad sorbos (decrementar en
+una unidad)
+
+Si la persona menor de edad intenta beber una bebida alcohólica debe entregar un mensaje
+de error y la bebida debe seguir llena!
+Si la persona menor de edad intenta beber una bebida NO alcohólica, entregar mensaje de
+éxito y actualizar la propiedad sorbos (decrementar en una unidad).
+
+Además, debe agregar propiedad de ebriedad a persona. Cada vez que beba un sorbo de una
+bebida alcohólica la ebriedad debe aumentar. Si la ebriedad llega a más de 15, indicar que la
+persona se encuentra ebria. Si la ebriedad llega a 25, la persona ya no podrá beber más
+bebidas alcohólicas.
+Cualquier persona puede beber un máximo de 30 sorbos de lo que sea*/
+
+</script>
+
+</body>
+</html>
+
